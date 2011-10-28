@@ -3,11 +3,11 @@
 # Maintainer: Samsagax <samsagax@gmail.com>
 
 pkgname=bumblebee-git
-pkgver=20111010
+pkgver=20111028
 pkgrel=1
 pkgdesc="Develop branch of Bumblebee. Optimus Support for Linux Through VirtualGL. This is a driver-agnostic package, you need to install proper drivers separately. Can be used with Nouveau or Nvidia"
 arch=('i686' 'x86_64')
-depends=('xorg-utils' 'virtualgl>=2.2.90')
+depends=('xorg-utils' 'virtualgl')
 optdepends=('xf86-video-nouveau: Nouveau driver' 'nouveau-dri: 3D acceleration features fo Nouveau' 'mesa: 3D acceleration features fo Nouveau'  'acpi_call: turn on/off discrete card (unstable)' 'nvidia-utils-bumblebee: Nvidia driver')
 if [ "$CARCH" = "x86_64" ]; then
      optdepends[${#optdepends[@]}]='lib32-virtualgl: run 32bit applications with optirun'
