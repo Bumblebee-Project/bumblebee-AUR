@@ -1,0 +1,51 @@
+# This script is incomplete and in development.
+
+# Maintainer: Samsagax <samsagax@gmail.com>
+
+pkgname=bumblebeed-git
+pkgver=20111221
+pkgrel=1
+pkgdesc="Develop branch of C-coded Bumblebee daemon. Optimus Support for Linux Through VirtualGL. This is a driver-agnostic package, you need to install proper drivers separately. Can be used with Nouveau or Nvidia"
+arch=('i686' 'x86_64')
+makedepends=('git')
+depends=('xorg-utils' 'virtualgl')
+optdepends=('xf86-video-nouveau: Nouveau driver' 'nouveau-dri: 3D acceleration features fo Nouveau' 'mesa: 3D acceleration features fo Nouveau'  'acpi_call: turn on/off discrete card (unstable)' 'nvidia-utils-bumblebee: Nvidia driver')
+if [ "$CARCH" = "x86_64" ]; then
+     optdepends[${#optdepends[@]}]='lib32-virtualgl: run 32bit applications with optirun'
+fi
+url="https://github.com/Bumblebee-Project/bumblebeed"
+license=("GPL3")
+install='bumblebee.install'
+conflicts=('bumblebee' 'bumblebee-git')
+provides=('bumblebee')
+backup=('etc/bumblebee/bumblebee.conf')
+source=('bumblebee.handler.archlinux')
+md5sums=('1bce7fcc4027dfe94f2fda37e7a4bcc8')
+
+_gitroot="git://github.com/Bumblebee-Project/bumblebeed.git"
+_gitname="bumblebeed"
+
+build() {
+    cd "$srcdir"
+    msg "Connecting to GIT server...."
+    if [ -d $_gitname ] ; then
+        cd $_gitname && git pull origin
+        msg "The local files are updated."
+    else
+        git clone "$_gitroot" "$_gitname"
+        cd "$_gitname"
+    fi
+    msg "GIT checkout done or server timeout"
+
+    autoreconf -fi
+    ./configure \
+        --prefix=/usr \
+        --sysconfdir=/etc
+    make
+}
+
+package() {
+    cd "$srcdir/$_gitname"
+    make install DESTDIR="$pkgdir"
+    install -D -m755 "$srcdir/bumblebee.handler.archlinux" "$pkgdir/etc/rc.d/bumblebee"
+}
