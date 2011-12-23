@@ -20,7 +20,7 @@ conflicts=('bumblebee' 'bumblebee-git')
 provides=('bumblebee')
 backup=('etc/bumblebee/bumblebee.conf')
 source=('bumblebee.handler.archlinux')
-md5sums=('26feba8e5acd779cd942b691332429dd')
+md5sums=('266d07d9233059f14ec6eb8a7cb1a53a')
 
 _gitroot="git://github.com/Bumblebee-Project/bumblebeed.git"
 _gitname="bumblebeed"
