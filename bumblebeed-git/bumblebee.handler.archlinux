@@ -4,13 +4,13 @@
 . /etc/rc.conf
 . /etc/rc.d/functions
 
-NAME=bumblebeed
-BIN="$(which $NAME)"
+NAME=bumblebee
+BIN="$(which "bumblebeed")"
 PIDFILE=/var/run/$NAME.pid
 
 start() {
   local retval
-  killall -0 $NAME &>/dev/null
+  killall -0 $BIN &>/dev/null
   retval=$?
   if ! [ $retval -eq 0 ]; then
     stat_busy "Starting Bumblebee"
@@ -30,7 +30,7 @@ start() {
 stop() {
   local retval
   local pid
-  pid=$(pidof $NAME)
+  pid=$(pidof $BIN)
   kill -0 $pid &>/dev/null
   retval=$?
   if [ $retval -eq 0 ] ; then
@@ -40,12 +40,14 @@ stop() {
     kill -0 $pid &>/dev/null
     retval=$?
     if ! [ $retval -eq 0 ]; then
+      rm_daemon $NAME
       stat_done
     else
       sleep 2
       killall -0 $pid
       retval=$?
       if ! [ $retval -eq 0 ]; then
+        rm_daemon $NAME
         stat_done
       else
         kill -KILL $pid
@@ -53,6 +55,7 @@ stop() {
         kill -0 $pid
         retval=$?
         if ! [ $retval -eq 0 ]; then
+          rm_daemon $NAME
           stat_done
         else
           stat_fail
