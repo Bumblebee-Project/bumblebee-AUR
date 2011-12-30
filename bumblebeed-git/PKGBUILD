@@ -3,7 +3,7 @@
 # Maintainer: Samsagax <samsagax@gmail.com>
 
 pkgname=bumblebeed-git
-pkgver=20111221
+pkgver=20111229
 pkgrel=1
 pkgdesc="Develop branch of C-coded Bumblebee daemon. Optimus Support for Linux Through VirtualGL. This is a driver-agnostic package, you need to install proper drivers separately. Can be used with Nouveau or Nvidia"
 arch=('i686' 'x86_64')
