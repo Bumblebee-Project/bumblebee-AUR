@@ -1,7 +1,7 @@
 # Maintainer: Samsagax <samsagax@gmail.com>
 
 pkgname=bbswitch-git
-pkgver=20111230
+pkgver=20120111
 pkgrel=1
 pkgdesc="kernel module allowing to switch dedicated graphics card on Optimus laptops"
 arch=('i686' 'x86_64')
