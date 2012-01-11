@@ -2,13 +2,13 @@
 
 # Maintainer: Samsagax <samsagax@gmail.com>
 
-pkgname=bumblebeed-git
-pkgver=20111230
+pkgname=bumblebee-git
+pkgver=20120111
 pkgrel=1
-pkgdesc="Develop branch of C-coded Bumblebee daemon. Optimus Support for Linux Through VirtualGL. This is a driver-agnostic package, you need to install proper drivers separately. Can be used with Nouveau or Nvidia"
+pkgdesc="Develop branch of Bumblebee. Optimus Support for Linux Through VirtualGL. This is a driver-agnostic package, you need to install proper drivers separately. Can be used with Nouveau or Nvidia"
 arch=('i686' 'x86_64')
 makedepends=('git')
-depends=('xorg-utils' 'virtualgl')
+depends=('virtualgl' 'libbsd' 'glib2')
 optdepends=('xf86-video-nouveau: Nouveau driver' 'nouveau-dri: 3D acceleration features fo Nouveau' 'mesa: 3D acceleration features fo Nouveau'  'bbswitch: switch on/off discrete card' 'nvidia-utils-bumblebee: Nvidia driver')
 if [ "$CARCH" = "x86_64" ]; then
      optdepends[${#optdepends[@]}]='lib32-virtualgl: run 32bit applications with optirun'
@@ -19,11 +19,12 @@ install='bumblebee.install'
 conflicts=('bumblebee' 'bumblebee-git')
 provides=('bumblebee')
 backup=('etc/bumblebee/bumblebee.conf')
-source=('bumblebee.handler.archlinux')
-md5sums=('266d07d9233059f14ec6eb8a7cb1a53a')
+source=('bumblebeed.in')
+md5sums=('89402c8a804ddeb9f0654ad94034cdbc')
 
 _gitroot="git://github.com/Bumblebee-Project/bumblebeed.git"
 _gitname="bumblebeed"
+_gitbranch="release-3.0"
 
 build() {
     cd "$srcdir"
@@ -32,7 +33,7 @@ build() {
         cd $_gitname && git pull origin
         msg "The local files are updated."
     else
-        git clone "$_gitroot" "$_gitname"
+        git clone "$_gitroot" "$_gitname" -b "$_gitbranch"
         cd "$_gitname"
     fi
     msg "GIT checkout done or server timeout"
@@ -47,5 +48,5 @@ build() {
 package() {
     cd "$srcdir/$_gitname"
     make install DESTDIR="$pkgdir"
-    install -D -m755 "$srcdir/bumblebee.handler.archlinux" "$pkgdir/etc/rc.d/bumblebee"
+    install -D -m755 "$srcdir/bumblebeed.in" "$pkgdir/etc/rc.d/bumblebeed"
 }
