@@ -2,6 +2,9 @@
 # Bumblebee daemon handler script. Distro-independent script to start/stop
 # daemon. Should be runnable in any distro but won't give any feedback.
 
+. /etc/rc.d/functions
+. /etc/rc.conf
+
 NAME=bumblebeed
 BIN='/usr/bin/bumblebeed'
 PIDFILE=/var/run/$NAME.pid
@@ -15,7 +18,7 @@ status() {
 	pid="$(cat "$PIDFILE" 2>/dev/null)"
 
 	# process is not running, pid file not properly cleared
-	kill -0 "$pid" || return 1
+	kill -0 "$pid" 2>/dev/null || return 1
 
 	# process is running
 	return 0
@@ -27,7 +30,7 @@ start() {
 
 	# return if already started
 	status && return 0 || true
-	"$BIN" --daemon
+	"$BIN" --daemon 2>/dev/null
 	status && return 0 || return 1
 }
 
@@ -77,8 +80,21 @@ case "$1" in
     fi
 	;;
   restart)
-	"$0 start"
-    "$0 stop"
+    stat_busy "Stopping Bumblebee"
+    if stop; then
+        stat_done
+        rm_daemon $NAME
+    else
+        stat_fail
+    fi
+    sleep 1
+    stat_busy "Starting Bumblebee"
+    if start; then
+        stat_done
+        add_daemon $NAME
+    else
+        stat_fail
+    fi
     ;;
   *)
 	echo "Usage: $0 {start|stop|restart|status}"
