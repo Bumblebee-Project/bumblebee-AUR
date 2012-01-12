@@ -1,17 +1,19 @@
 # Maintainer: Samsagax <samsagax@gmail.com>
 
 pkgname=dkms-bbswitch-git
-pkgver=20111231
+pkgver=20120112
+_modver=0.2
 pkgrel=1
 pkgdesc="kernel module allowing to switch dedicated graphics card on Optimus laptops, dkms version"
 arch=('i686' 'x86_64')
 url=("http://github.com/Bumblebee-Project/bbswitch")
 license=('GPL')
 provides=('bbswitch')
+conflicts=('bbswitch-git')
 depends=('dkms')
 makedepends=('git')
 source=('dkms.conf.in')
-md5sums=('54e7da57ce006ca50f382bd835b2b6c0')
+md5sums=('262c8a723584860fa86f8e5fc8a4889a')
 install=dkms-bbswitch.install
 _gitroot=('git://github.com/Bumblebee-Project/bbswitch.git')
 _gitname=("bbswitch")
@@ -33,9 +35,9 @@ build() {
 
 package() {
   cd ${srcdir}/${_gitname}
-  install -dm755 "${pkgdir}/usr/src/bbswitch-${pkgver}/"
+  install -dm755 "${pkgdir}/usr/src/bbswitch-${_modver}/"
   for i in "${srcdir}/${_gitname}/"{Makefile,bbswitch.c}; do
-    install -D -m644 "${i}" "${pkgdir}/usr/src/bbswitch-${pkgver}/"
+    install -D -m644 "${i}" "${pkgdir}/usr/src/bbswitch-${_modver}/"
   done
-  sed "s/REPLACE/${pkgver}/" "${srcdir}/dkms.conf.in" > "${pkgdir}/usr/src/bbswitch-${pkgver}/dkms.conf"
+  sed "s/#MODULE_VERSION#/${_modver}/" "${srcdir}/dkms.conf.in" > "${pkgdir}/usr/src/bbswitch-${_modver}/dkms.conf"
 }
