@@ -5,7 +5,7 @@
 pkgname=nvidia-utils-bumblebee
 #pkgname=('nvidia-utils-bumblebee' 'opencl-nvidia')
 pkgver=290.10
-pkgrel=1
+pkgrel=2
 arch=('i686' 'x86_64')
 url="http://www.nvidia.com/"
 license=('custom')
