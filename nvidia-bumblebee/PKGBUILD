@@ -10,8 +10,9 @@ pkgrel=1
 pkgdesc="NVIDIA drivers for linux."
 arch=('i686' 'x86_64')
 url="http://www.nvidia.com/"
-depends=('linux>=3.1' 'linux<3.2' "nvidia-utils-bumblebee=${pkgver}")
-makedepends=('linux-headers>=3.1' 'linux-headers<3.2')
+depends=('linux' "nvidia-utils-bumblebee=${pkgver}")
+provides=('nvidia')
+makedepends=('linux-headers')
 conflicts=('nvidia-96xx' 'nvidia-173xx')
 license=('custom')
 install=nvidia.install
