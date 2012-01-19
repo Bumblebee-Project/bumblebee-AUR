@@ -13,7 +13,7 @@ optdepends=('xf86-video-nouveau: Nouveau driver' 'nouveau-dri: 3D acceleration f
 if [ "$CARCH" = "x86_64" ]; then
      optdepends[${#optdepends[@]}]='lib32-virtualgl: run 32bit applications with optirun'
 fi
-url="https://github.com/Bumblebee-Project/bumblebeed"
+url="www.Bumblebee-Project.org"
 license=("GPL3")
 install='bumblebee.install'
 provides=('bumblebee')
