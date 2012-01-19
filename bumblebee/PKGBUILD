@@ -4,7 +4,7 @@
 
 pkgname=bumblebee
 pkgver=3.0
-pkgrel=1
+pkgrel=2
 pkgdesc="Bumblebee brings Optimus Support for Linux Through VirtualGL. You need to install proper drivers separately. Can be used with Nouveau or Nvidia"
 arch=('i686' 'x86_64')
 makedepends=('git')
@@ -18,7 +18,7 @@ license=("GPL3")
 install='bumblebee.install'
 provides=('bumblebee')
 backup=('etc/bumblebee/bumblebee.conf')
-source=("https://github.com/downloads/Bumblebee-Project/bumblebeed/${pkgname}-${pkgver}.tar.gz" 'bumblebeed.in')
+source=("https://github.com/downloads/Bumblebee-Project/Bumblebee/${pkgname}-${pkgver}.tar.gz" 'bumblebeed.in')
 md5sums=('2ddd4d47bc52aceb3b295e68f9f32ffe'
          '8b05da760e9236ecff2c6820616119f7')
 
