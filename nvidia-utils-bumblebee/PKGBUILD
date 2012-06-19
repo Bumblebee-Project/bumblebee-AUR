@@ -4,7 +4,7 @@
 # Contributor: James Rayner <iphitus@gmail.com>
 
 pkgname=nvidia-utils-bumblebee
-pkgver=302.17
+pkgver=302.07
 pkgrel=1
 arch=('i686' 'x86_64')
 url="http://www.nvidia.com/"
