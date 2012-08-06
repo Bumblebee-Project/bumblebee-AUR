@@ -2,7 +2,7 @@
 # Contributor: FigoDaPaura <ffigoDaPaura>
 
 pkgname=virtualgl-svn
-pkgver=4670
+pkgver=5120
 pkgrel=1
 pkgdesc="Redirects 3D commands from an OpenGL application onto a server-side 3D graphics card. SVN version"
 arch=('i686' 'x86_64')
