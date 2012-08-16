@@ -37,7 +37,7 @@ build() {
 package() {
     cd "${srcdir}/${_pkgbase}-${pkgver}"
     make install DESTDIR="$pkgdir"
-    install -D -m755 "scripts/systemd/bumblebeed.service" "$pkgdir/usr/lib/systemd/system/bumblebeed.service"
+    install -D -m644 "scripts/systemd/bumblebeed.service" "$pkgdir/usr/lib/systemd/system/bumblebeed.service"
     # Make bash_completion work
     mv -v "${pkgdir}/etc/bash_completion.d/bumblebee" "${pkgdir}/etc/bash_completion.d/optirun"
 }
