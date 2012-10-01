@@ -4,14 +4,15 @@
 
 pkgname=nvidia-bumblebee
 pkgver=304.51
-_extramodules=extramodules-3.4-ARCH
-pkgrel=1
+_basekernel=3.5
+_extramodules=extramodules-${_basekernel}-ARCH
+pkgrel=2
 pkgdesc="NVIDIA drivers for linux. Packaged for Bumblebee"
 arch=('i686' 'x86_64')
 url="http://www.nvidia.com/"
-depends=('linux>=3.4' 'linux<3.5' "nvidia-utils-bumblebee=${pkgver}")
+depends=("linux>=${_basekernel}" "linux<${_basekernel}.99" "nvidia-utils-bumblebee=${pkgver}")
 provides=("nvidia=${pkgver}")
-makedepends=('linux-headers>=3.4' 'linux-headers<3.5')
+makedepends=("linux-headers>=${_basekernel}" "linux-headers<${_basekernel}.99")
 conflicts=('nvidia' 'nvidia-96xx' 'nvidia-173xx' 'dkms-nvidia')
 license=('custom')
 install=nvidia.install
