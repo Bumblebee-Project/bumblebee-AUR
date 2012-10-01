@@ -3,9 +3,9 @@
 # Contributor : Thomas Baechler <thomas@archlinux.org>
 
 pkgname=nvidia-bumblebee
-pkgver=304.37
+pkgver=304.51
 _extramodules=extramodules-3.4-ARCH
-pkgrel=2
+pkgrel=1
 pkgdesc="NVIDIA drivers for linux. Packaged for Bumblebee"
 arch=('i686' 'x86_64')
 url="http://www.nvidia.com/"
@@ -21,12 +21,12 @@ if [ "$CARCH" = "i686" ]; then
     _arch='x86'
     _pkg="NVIDIA-Linux-${_arch}-${pkgver}"
     source=("ftp://download.nvidia.com/XFree86/Linux-${_arch}/${pkgver}/${_pkg}.run")
-    md5sums=('ee3e97109201ab954c96860e28ada611')
+    md5sums=('4fde294e139a31528ea7f6efd8885a09')
 elif [ "$CARCH" = "x86_64" ]; then
     _arch='x86_64'
     _pkg="NVIDIA-Linux-${_arch}-${pkgver}-no-compat32"
     source=("ftp://download.nvidia.com/XFree86/Linux-${_arch}/${pkgver}/${_pkg}.run")
-    md5sums=('65fce562c0df3def06012db9ff6bafa1')
+    md5sums=('2ca10e05cd3b5d2a87caaaad9fd93c06')
 fi
 
 build() {
