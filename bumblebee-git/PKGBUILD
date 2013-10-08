@@ -1,9 +1,11 @@
+# This script is incomplete and in development.
+
 # Maintainer: Lekensteyn <lekensteyn@gmail.com>
 # Contributor: Samsagax <samsagax@gmail.com>
 
 pkgname=bumblebee-git
 _gitname=bumblebee
-pkgver=20121029
+pkgver=3.2.12.g8244297
 pkgrel=1
 pkgdesc="Develop branch of Bumblebee. Optimus Support for Linux Through VirtualGL. You need to install proper drivers separately. Can be used with Nouveau or Nvidia"
 arch=('i686' 'x86_64')
