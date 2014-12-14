@@ -7,9 +7,9 @@ pkgname=bumblebee-git
 _gitname=bumblebee
 pkgver=3.2.1.r14.b506a03
 pkgrel=1
-pkgdesc="Develop branch of Bumblebee. Optimus Support for Linux Through VirtualGL. You need to install proper drivers separately. Can be used with Nouveau or Nvidia"
+pkgdesc="NVIDIA Optimus support for Linux through VirtualGL or primus"
 arch=('i686' 'x86_64')
-depends=('virtualgl' 'glib2' 'mesa-libgl')
+depends=('glib2' 'mesa-libgl')
 makedepends=('git' 'help2man')
 optdepends=('bbswitch: switch on/off discrete card'
             'xf86-video-nouveau: Nouveau driver'
@@ -17,6 +17,7 @@ optdepends=('bbswitch: switch on/off discrete card'
             'nvidia: NVIDIA kernel driver'
             'nvidia-340xx: NVIDIA kernel driver for older devices'
             'nvidia-304xx: NVIDIA kernel driver for even older devices'
+            'virtualgl: oldest back-end for optirun'
             'primus: faster back-end for optirun')
 if [ "$CARCH" = "x86_64" ]; then
      optdepends[${#optdepends[@]}]='lib32-virtualgl: run 32bit applications with optirun'
